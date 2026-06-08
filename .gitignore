@@ -1,0 +1,22 @@
+﻿# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Browser profiles / Edge cache folders
+.edge-*/
+
+# Claude session files
+.claude/
+*.out.log
+
+# OS
+.DS_Store
+Thumbs.db
