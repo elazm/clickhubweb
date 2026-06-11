@@ -74,7 +74,7 @@ export default function FAQ() {
         <div className="mt-14 text-center bg-[#f9fafb] rounded-2xl p-8 border border-black/[0.06]">
           <h3 className="font-display font-bold text-xl text-[#0a0a0a] mb-2">Still have questions?</h3>
           <p className="text-sm text-[#6B7280] mb-6">Book a free 30-minute call. No commitment, no pitch.</p>
-          <a href="#cta" className="inline-flex items-center h-11 px-6 bg-[#1DB874] text-white text-sm font-bold rounded-lg hover:bg-[#18a064] transition-colors">
+          <a href="#cta" onClick={(e) => { e.preventDefault(); document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' }) }} className="inline-flex items-center h-11 px-6 bg-[#1DB874] text-white text-sm font-bold rounded-lg hover:bg-[#18a064] transition-colors">
             Schedule a call →
           </a>
         </div>

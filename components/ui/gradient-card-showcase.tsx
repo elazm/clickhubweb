@@ -2,6 +2,11 @@
 
 import React from 'react';
 
+const scrollToCta = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.preventDefault();
+  document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+};
+
 // Featured card (full-width, row 1)
 const featured = {
   title: 'Digital Marketing',
@@ -105,7 +110,7 @@ function CardShell({ title, desc, gradientFrom, gradientTo, cta, ctaColor, borde
           <h3 className="text-xl font-bold mb-3 font-display">{title}</h3>
           <p className="text-sm leading-relaxed text-white/75">{desc}</p>
         </div>
-        <a href="#cta" className="inline-block mt-4 text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
+        <a href="#cta" onClick={scrollToCta} className="inline-block mt-4 text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
           {cta} →
         </a>
       </div>
@@ -125,14 +130,16 @@ function FeaturedCard({ title, desc, gradientFrom, gradientTo, cta, ctaColor }: 
           className="relative z-20 rounded-xl text-white shadow-xl flex flex-row items-center"
           style={{
             background: 'linear-gradient(135deg, #0a0f0d 0%, #4a0a2e 40%, #ec4899 100%)',
-            minHeight: 200,
-            padding: '32px 40px',
+            backgroundSize: 'cover',
+            minHeight: 280,
+            height: '100%',
+            padding: '40px 48px',
           }}
         >
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12 }}>
             <h3 className="font-display text-xl font-bold">{title}</h3>
             <p className="text-sm leading-relaxed text-white/75">{desc}</p>
-            <a href="#cta" className="inline-block text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
+            <a href="#cta" onClick={scrollToCta} className="inline-block text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
               {cta} →
             </a>
           </div>
@@ -157,7 +164,7 @@ function FeaturedCard({ title, desc, gradientFrom, gradientTo, cta, ctaColor }: 
             <h3 className="font-display text-xl font-bold mb-3">{title}</h3>
             <p className="text-sm leading-relaxed text-white/75">{desc}</p>
           </div>
-          <a href="#cta" className="inline-block mt-4 text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
+          <a href="#cta" onClick={scrollToCta} className="inline-block mt-4 text-[13px] font-medium self-start hover:underline transition-all" style={{ color: ctaColor }}>
             {cta} →
           </a>
         </div>

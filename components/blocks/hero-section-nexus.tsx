@@ -268,6 +268,14 @@ interface NavLinkProps {
   onClick?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
 }
 
+const scrollToSection = (e: ReactMouseEvent<HTMLAnchorElement>, href: string) => {
+  if (!href.startsWith("#") || href === "#") return;
+  const target = document.querySelector(href);
+  if (!target) return;
+  e.preventDefault();
+  target.scrollIntoView({ behavior: "smooth" });
+};
+
 const NavLink: React.FC<NavLinkProps> = ({
   href = "#",
   children,
@@ -276,7 +284,10 @@ const NavLink: React.FC<NavLinkProps> = ({
 }) => (
   <motion.a
     href={href}
-    onClick={onClick}
+    onClick={(e) => {
+      scrollToSection(e, href);
+      onClick?.(e);
+    }}
     className={cn(
       "relative group text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 flex items-center py-1",
       className
@@ -561,6 +572,7 @@ const InteractiveHero: React.FC = () => {
           <div className="flex items-center gap-4 flex-shrink-0">
             <motion.a
               href="#cta"
+              onClick={(e) => scrollToSection(e, "#cta")}
               className="hidden md:inline-flex items-center h-9 px-5 bg-[#2ECC8F] text-white text-sm font-bold rounded-lg shadow-[0_2px_12px_rgba(46,204,143,0.3)] whitespace-nowrap"
               whileHover={{ scale: 1.03, y: -1 }}
               whileTap={{ scale: 0.97 }}
@@ -609,7 +621,7 @@ const InteractiveHero: React.FC = () => {
                 ))}
                 <a
                   href="#cta"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => { scrollToSection(e, "#cta"); setIsMobileMenuOpen(false); }}
                   className="mt-2 w-full h-11 flex items-center justify-center bg-[#2ECC8F] text-white text-sm font-bold rounded-lg"
                 >
                   Get a free audit →
@@ -670,6 +682,7 @@ const InteractiveHero: React.FC = () => {
         >
           <motion.a
             href="#cta"
+            onClick={(e) => scrollToSection(e, "#cta")}
             className="inline-flex items-center h-12 px-7 bg-[#2ECC8F] text-white font-bold text-sm rounded-lg shadow-[0_2px_20px_rgba(46,204,143,0.35)]"
             whileHover={{ scale: 1.04, y: -2, boxShadow: "0 8px 28px rgba(46,204,143,0.45)" }}
             whileTap={{ scale: 0.97 }}
@@ -679,6 +692,7 @@ const InteractiveHero: React.FC = () => {
           </motion.a>
           <motion.a
             href="#services"
+            onClick={(e) => scrollToSection(e, "#services")}
             className="inline-flex items-center h-12 px-7 border border-white/15 bg-white/5 text-white/70 font-medium text-sm rounded-lg hover:bg-white/10 hover:text-white transition-colors"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
